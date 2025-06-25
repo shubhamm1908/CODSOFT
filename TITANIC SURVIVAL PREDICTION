@@ -1,0 +1,41 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the Titanic dataset (use local file path)
+df = pd.read_csv('C:/Users/Admin/Downloads/Titanic-Dataset.csv')
+
+# Set plot styles
+sns.set(style="whitegrid")
+plt.figure(figsize=(15, 12))
+
+# 1. Survival count
+plt.subplot(2, 3, 1)
+sns.countplot(data=df, x='Survived', palette='Set2')
+plt.title('Survival Count')
+plt.xticks([0, 1], ['Died', 'Survived'])
+
+# 2. Survival by Gender
+plt.subplot(2, 3, 2)
+sns.countplot(data=df, x='Sex', hue='Survived', palette='Set1')
+plt.title('Survival by Gender')
+plt.legend(title='Survived', labels=['No', 'Yes'])
+
+# 3. Survival by Passenger Class
+plt.subplot(2, 3, 3)
+sns.countplot(data=df, x='Pclass', hue='Survived', palette='Set3')
+plt.title('Survival by Passenger Class')
+plt.legend(title='Survived', labels=['No', 'Yes'])
+
+# 4. Age Distribution
+plt.subplot(2, 3, 4)
+sns.histplot(data=df, x='Age', kde=True, bins=30, color='skyblue')
+plt.title('Age Distribution')
+
+# 5. Fare Distribution
+plt.subplot(2, 3, 5)
+sns.histplot(data=df, x='Fare', kde=True, bins=30, color='orange')
+plt.title('Fare Distribution')
+
+plt.tight_layout()
+plt.show()
